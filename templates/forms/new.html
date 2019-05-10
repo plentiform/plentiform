@@ -1,0 +1,13 @@
+{% extends "../layouts/public.html" %}
+
+{% block content %}
+<h1>New Form</h1>
+
+<form action="/forms" method="post">
+  {% include "_form.html" %}
+
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Create Form">
+  </div>
+</form>
+{% endblock %}

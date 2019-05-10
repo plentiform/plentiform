@@ -1,0 +1,27 @@
+{% extends "../layouts/public.html" %}
+
+{% block content %}
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Forms</h6>
+    <h3 class="dashhead-title">Overview</h3>
+  </div>
+
+  <div class="dashhead-toolbar">
+    <div class="btn-group dashhead-toolbar-item btn-group-thirds">
+      <a class="btn btn-primary" href="/forms/new" class="">Create Form</a>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="list-group pt-2">
+  {% for form in forms %}
+  <a href="/forms/{{ form.Id }}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <h5 class="mb-1">{{ form.Name }}</h5>
+    <small>{{ form.Uuid }}</small>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

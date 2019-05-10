@@ -1,0 +1,32 @@
+{% extends "../layouts/public.html" %}
+
+{% block content %}
+<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
+
+<h1>Sign up</h1>
+
+<form action="/signup" method="post">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input class="form-control" id="name" name="name" type="text" value="{{ user.Name }}" required />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control" id="email" name="email" type="email" value="{{ user.Email }}" required />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control" id="password" name="password" type="password" required />
+  </div>
+
+  <div class="form-group">
+    <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Sign up">
+  </div>
+</form>
+{% endblock %}

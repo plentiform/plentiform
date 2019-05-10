@@ -1,0 +1,37 @@
+{% extends "../layouts/public.html" %}
+
+{% block content %}
+<div class="dashhead">
+  <div class="dashhead-titles">
+    <h6 class="dashhead-subtitle">Forms</h6>
+    <h3 class="dashhead-title">{{ form.Name }}</h3>
+  </div>
+
+  <div class="dashhead-toolbar">
+    <div class="btn-group dashhead-toolbar-item btn-group-thirds">
+      <a href="/forms/{{ form.Id }}/edit" class="btn btn-primary">Edit Form</a>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<br>
+
+<h4>Submissions</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  {% for submission in submissions %}
+  <tr>
+    <td>{{ submission.Id }}</td>
+    <td>{{ submission.Body }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
