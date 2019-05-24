@@ -43,7 +43,7 @@ func main() {
 		port = "3000"
 	}
 
-	log.Println("Listening on " + port)
+  log.Println("Listening on http://localhost:" + port)
 	log.Fatal(http.ListenAndServe(":"+port,
 		handlers.CompressHandler(
 			handlers.HTTPMethodOverrideHandler(
