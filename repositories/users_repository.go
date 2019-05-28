@@ -7,13 +7,14 @@ import (
 )
 
 const (
-	USERS_FIND_BY_ID_SQL                       = `select * from users where id = $1`
-	USERS_FIND_BY_EMAIL_SQL                    = `select * from users where email = lower($1)`
-	USERS_FIND_BY_EMAIL_AND_PASSWORD_SQL       = `select * from users where email = lower($1) and password_digest = crypt($2, password_digest)`
-	USERS_FIND_BY_EMAIL_CONFIRMATION_TOKEN_SQL = `select * from users where email_confirmation_token = $1`
+  USERS_TABLE_EXISTS_SQL                     = `select to_regclass('users')`
+  USERS_FIND_BY_ID_SQL                       = `select * from users where id = $1`
+  USERS_FIND_BY_EMAIL_SQL                    = `select * from users where email = lower($1)`
+  USERS_FIND_BY_EMAIL_AND_PASSWORD_SQL       = `select * from users where email = lower($1) and password_digest = crypt($2, password_digest)`
+  USERS_FIND_BY_EMAIL_CONFIRMATION_TOKEN_SQL = `select * from users where email_confirmation_token = $1`
 
-	USERS_INSERT_SQL = `insert into users (name, email, password_digest, email_confirmation_token) values ($1, lower($2), crypt($3, gen_salt('bf', 8)), $4) returning *`
-	USERS_UPDATE_SQL = `update users set name = $2, email = $3, password_digest = $4, updated_at = now(), email_confirmation_token = $5, is_email_confirmed = $6 where id = $1 returning *`
+  USERS_INSERT_SQL = `insert into users (name, email, password_digest, email_confirmation_token) values ($1, lower($2), crypt($3, gen_salt('bf', 8)), $4) returning *`
+  USERS_UPDATE_SQL = `update users set name = $2, email = $3, password_digest = $4, updated_at = now(), email_confirmation_token = $5, is_email_confirmed = $6 where id = $1 returning *`
 )
 
 type UsersRepository struct {
@@ -22,6 +23,16 @@ type UsersRepository struct {
 
 func NewUsersRepository(db *sql.DB) *UsersRepository {
 	return &UsersRepository{db: db}
+}
+
+func (repo *UsersRepository) UserTableExists() (bool) {
+  var tableName string
+  repo.db.QueryRow(USERS_TABLE_EXISTS_SQL).Scan(&tableName)
+  if tableName == "users" {
+    return true
+  } else {
+    return false
+  }
 }
 
 func (repo *UsersRepository) FindById(id int) (*models.User, error) {
