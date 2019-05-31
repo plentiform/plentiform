@@ -2,15 +2,15 @@ package main
 
 import (
 	"database/sql"
+	"log"
 	"net/http"
 	"os"
-	"log"
 
 	"github.com/flosch/pongo2"
 	"github.com/gorilla/sessions"
 	"github.com/haisum/recaptcha"
-	repo "github.com/plentiform/plentiform/repositories"
 	_ "github.com/lib/pq"
+	repo "github.com/plentiform/plentiform/repositories"
 	"github.com/sendgrid/sendgrid-go"
 )
 

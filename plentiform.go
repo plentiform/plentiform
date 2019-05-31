@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"os"
 
-	 _ "github.com/joho/godotenv/autoload"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/plentiform/plentiform/models"
 	repo "github.com/plentiform/plentiform/repositories"
 )
@@ -43,7 +43,7 @@ func main() {
 		port = "3000"
 	}
 
-  log.Println("Listening on http://localhost:" + port)
+	log.Println("Listening on http://localhost:" + port)
 	log.Fatal(http.ListenAndServe(":"+port,
 		handlers.CompressHandler(
 			handlers.HTTPMethodOverrideHandler(
