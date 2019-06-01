@@ -7,57 +7,47 @@
 
     <title>Plentiform</title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/dashhead.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="shortcut icon" type="image/png" href="/img/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
 
+    <!--
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.2/rails.min.js"></script>
+    -->
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="/">Plentiform</a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            {% if currentUser %}
-            <li class="nav-item">
-              <a class="nav-link" href="/forms">Forms</a>
-            </li>
-            {% endif %}
-          </ul>
-
-          <ul class="navbar-nav">
-            {% if currentUser %}
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup">Sign up</a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
+    <nav>
+    {% if currentUser %}
+      <a href="/logout">Logout</a>
+    {% else %}
+      <a id="brand" href="/"><img src="/img/plentiform.svg" /></a>
+      <a href="/login">Login</a>
+      <a href="/signup">Sign up</a>
+    {% endif %}
     </nav>
+    {% if currentUser %}
+    <aside>
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link" href="/forms">Forms</a>
+        </li>
+      </ul>
+    </aside>
+    <main>
+    {% else %}
+    <main class="logged-out">
+    {% endif %}
 
-    <div class="container pt-3">
       {% for f in flashes %}
-      <div class="alert alert-primary" role="alert">{{ f }}</div>
+      <div class="alert" role="alert">{{ f }}</div>
       {% endfor %}
 
       {% block content %}
       {% endblock %}
-    </div>
+    </main>
   </body>
 </html>
