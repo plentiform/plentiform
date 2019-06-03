@@ -5,8 +5,11 @@
 
 <form action="/signup" method="post">
 
-  <img src="/img/gopher.svg" />
-  <h1>Sign up</h1>
+  <div id="login-intro">
+    <img src="/img/gopher.svg" />
+    <h1>Sign up</h1>
+    <div>Already have an account? <a href="/login">Login</a></div>
+  </div>
 
   <label for="name">Name</label>
   <input id="name" name="name" type="text" value="{{ user.Name }}" required />

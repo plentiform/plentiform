@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg width="79.375mm" height="79.375mm" enable-background="new" version="1.1" viewBox="0 0 281.25 281.25" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<svg width="66.146mm" height="66.146mm" enable-background="new" version="1.1" viewBox="0 0 234.37 234.37" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
  <defs>
   <clipPath id="clipPath5044">
    <circle cx="332.38" cy="319.46" r="669.12" fill="none" stroke="#1d1d1b" stroke-width="18.938"/>
@@ -15,8 +15,8 @@
    </cc:Work>
   </rdf:RDF>
  </metadata>
- <g transform="translate(358.24 -715.68)">
-  <g transform="matrix(.20723 0 0 .20723 -285.93 788.78)" clip-path="url(#clipPath5044)">
+ <g transform="translate(358.24 -762.56)">
+  <g transform="matrix(.17269 0 0 .17269 -297.98 823.47)" clip-path="url(#clipPath5044)">
    <g fill="#c2a1d3" fill-rule="evenodd" stroke-width="20">
     <path d="m-140 1003.8s-52.575-613.74 94.286-858.57c60.789-101.34 207.86-129.69 325.71-147.14 79.812-11.822 164.75 2.3271 240 31.429 74.662 28.874 153.37 70.123 197.14 137.14 64.759 99.141 56.746 230.75 68.571 348.57 16.358 162.99 2.8571 491.43 2.8571 491.43z" stroke="#1d1d1b"/>
     <path d="m-65.714 158.08s60-67.143 81.429-80c0 0-36.545-84.441-108.57-51.429-34.286 15.714-26.071 57.143-10.714 86.071 15.357 28.929 37.857 45.357 37.857 45.357z" stroke="#000"/>
@@ -73,7 +73,7 @@
    <path d="m426.28-27.491c-22.223-23.234-89.398 16.162-89.398 16.162s76.772 8.0812 80.307 13.637" fill="none" stroke="#1d1d1b" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"/>
   </g>
  </g>
- <g transform="translate(358.24 -715.68)">
-  <circle cx="-217.61" cy="856.31" r="138.66" fill="none" stroke="#1d1d1b" stroke-width="3.9245"/>
+ <g transform="translate(358.24 -762.56)">
+  <circle cx="-241.05" cy="879.75" r="115.55" fill="none" stroke="#1d1d1b" stroke-width="3.2704"/>
  </g>
 </svg>

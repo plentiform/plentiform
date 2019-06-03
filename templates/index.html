@@ -3,9 +3,13 @@
 {% block content %}
 <h1>Plentiform</h1>
 
+{% if currentUser %}
 <p>An open source form backend for your JAMstack sites written in Go.</p>
 <ul>
   <li><a href="https://plentiform.com">Website</a></li>
   <li><a href="https://github.com/plentiform">GitHub</a></li>
 </ul>
+{% else %}
+hey
+{% endif %}
 {% endblock %}
