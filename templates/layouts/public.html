@@ -34,11 +34,6 @@
     {% else %}
     <main class="logged-out">
     {% endif %}
-
-      {% for f in flashes %}
-      <div class="alert" role="alert">{{ f }}</div>
-      {% endfor %}
-
       {% block content %}
       {% endblock %}
     </main>

@@ -29,6 +29,13 @@ a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.alert {
+  border: 2px solid var(--color-accent-dark);
+  background-color: var(--color-accent);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 2vw;
+}
 nav {
   position: fixed;
   top: 0;

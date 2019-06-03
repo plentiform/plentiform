@@ -1,7 +1,6 @@
 {% extends "layouts/public.html" %}
 
 {% block content %}
-<h1>Plentiform</h1>
 
 {% if currentUser %}
 <p>An open source form backend for your JAMstack sites written in Go.</p>
@@ -10,6 +9,26 @@
   <li><a href="https://github.com/plentiform">GitHub</a></li>
 </ul>
 {% else %}
-hey
+<form action="/login" method="post">
+
+  <div id="login-intro">
+    <img src="/img/gopher.svg" />
+    <h1>Login</h1>
+    <div>Don't have an account? <a href="/signup">Sign up</a></div>
+  </div>
+
+  {% for f in flashes %}
+    <div class="alert" role="alert">{{ f }}</div>
+  {% endfor %}
+
+  <label for="email">Email</label>
+  <input id="email" name="email" placeholder="admin@example.com" type="email" value="{{ email }}" required />
+
+  <label for="password">Password</label> <a href="/reset">Forgot?</a>
+  <input id="password" name="password" type="password" required /> 
+
+  <input type="submit" class="button" value="Login">
+
+</form>
 {% endif %}
 {% endblock %}
