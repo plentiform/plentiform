@@ -25,6 +25,7 @@ a {
 }
 a:hover {
   background: linear-gradient(to right, var(--color-accent-dark), var(--color-accent), var(--color-secondary), var(--color-primary));
+  background: linear-gradient(to right,var(--color-primary-dark),var(--color-accent-dark));
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -35,6 +36,9 @@ a:hover {
   border-radius: 3px;
   padding: 10px;
   margin-bottom: 2vw;
+}
+.help {
+  color: var(--color-base-dark);
 }
 nav {
   position: fixed;
@@ -93,9 +97,12 @@ main {
   padding: 2vw;
 }
 .logged-out {
-  background-color: var(--color-primary-dark);
+  background-image: linear-gradient(to right,var(--color-primary-dark),var(--color-accent-dark));
 }
 #login-intro {
   text-align: center;
-  margin-bottom: 3vw;
+  margin-bottom: 2vw;
+}
+#login-intro h1 {
+  margin: 5px;
 }

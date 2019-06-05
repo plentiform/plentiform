@@ -12,9 +12,9 @@
 <form action="/login" method="post">
 
   <div id="login-intro">
-    <img src="/img/gopher.svg" />
+    {% include "gopher.html" %}
     <h1>Login</h1>
-    <div>Don't have an account? <a href="/signup">Sign up</a></div>
+    <div class="help">Don't have an account? <a href="/signup">Sign up</a></div>
   </div>
 
   {% for f in flashes %}
