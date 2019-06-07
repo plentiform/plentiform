@@ -16,8 +16,8 @@
   </div>
 
   {{/* for f in flashes */}}
-  {{ range .Flashes }}
-  <div class="alert" role="alert">{{/* f */}}test</div>
+  {{ range .flashes }}
+  <div class="alert" role="alert">{{/* f */}}{{ . }}</div>
   {{ end }}
   {{/* endfor */}}
 

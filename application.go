@@ -10,7 +10,6 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/haisum/recaptcha"
 	_ "github.com/lib/pq"
-	"github.com/plentiform/plentiform/models"
 	repo "github.com/plentiform/plentiform/repositories"
 	"github.com/sendgrid/sendgrid-go"
 )
@@ -56,14 +55,16 @@ func (app *Application) Render(w http.ResponseWriter, r *http.Request, name stri
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return err
 	}
-	type PageData struct {
-		CurrentUser  *models.User
-		Flashes      []interface{}
-		RecaptchaKey string
-	}
+	/*
+		type PageData struct {
+			CurrentUser  *models.User
+			Flashes      []interface{}
+			RecaptchaKey string
+		}
+	*/
 	//vars := map[string]interface{}{}
 
-	tdata := new(PageData)
+	//tdata := new(PageData)
 
 	session, _ := app.GetSession(r)
 
@@ -71,18 +72,22 @@ func (app *Application) Render(w http.ResponseWriter, r *http.Request, name stri
 		user, _ := repo.NewUsersRepository(app.db).FindById(session.Values["userId"].(int))
 		//data["currentUser"] = user
 		//data = context.WithValue(data, "currentUser", user)
-		tdata.CurrentUser = user
+		//tdata.CurrentUser = user
 		vars["currentUser"] = user
 	}
 
 	//data["flashes"] = session.Flashes()
 	//data = context.WithValue(data, "flashes", session.Flashes())
-	tdata.Flashes = session.Flashes()
-	vars["flashes"] = session.Flashes()
+	//tdata.Flashes = session.Flashes()
+	//session.AddFlash("test")
+	//session.Flashes(.)
+	//vars["flashes"] = session.Values["_flash"]
+	vars["session"] = session
 	//data["recaptcha_site_key"] = os.Getenv("RECAPTCHA_SITE_KEY")
 	//data = context.WithValue(data, "recaptcha_site_key", os.Getenv("RECAPTCHA_SITE_KEY"))
-	tdata.RecaptchaKey = os.Getenv("RECAPTCHA_SITE_KEY")
+	//tdata.RecaptchaKey = os.Getenv("RECAPTCHA_SITE_KEY")
 	vars["recaptcha_site_key"] = os.Getenv("RECAPTCHA_SITE_KEY")
+	vars["flashes"] = session.Flashes()
 	session.Save(r, w)
 
 	//return t.ExecuteWriter(data, w)

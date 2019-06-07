@@ -37,6 +37,7 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
+		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}
@@ -51,6 +52,7 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
+		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}
@@ -65,6 +67,7 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
+		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}
