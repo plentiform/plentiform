@@ -11,15 +11,15 @@
   </div>
 
   <label for="name">Name</label>
-  <input id="name" name="name" type="text" value="{{/* user.Name */}}" required />
+  <input id="name" name="name" type="text" value="{{ .user.Name }}" required />
 
   <label for="email">Email</label>
-  <input id="email" name="email" type="email" value="{{/* user.Email */}}" required />
+  <input id="email" name="email" type="email" value="{{ .user.Email }}" required />
 
   <label for="password">Password</label>
   <input id="password" name="password" type="password" required />
 
-  <div class="g-recaptcha" data-sitekey="{{/* recaptcha_site_key */}}"></div>
+  <div class="g-recaptcha" data-sitekey="{{ .recaptcha_site_key }}"></div>
 
   <input type="submit" value="Sign up">
 

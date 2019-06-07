@@ -75,14 +75,6 @@ func (app *Application) SubmissionsDestroyHandler(w http.ResponseWriter, r *http
 	if err != nil {
 		session.AddFlash("An error occured while deleting this submission")
 		session.Save(r, w)
-		//app.Render(w, r, "forms/show", pongo2.Context{
-		//	"form":        form,
-		//	"submissions": submissions,
-		//})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "form", form)
-		//ctx = context.WithValue(ctx, "submissions", submissions)
-		//app.Render(w, r, "forms/show", ctx)
 		vars := map[string]interface{}{}
 		vars["form"] = form
 		vars["submissions"] = submissions

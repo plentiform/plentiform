@@ -7,8 +7,6 @@ import (
 )
 
 func (app *Application) SessionsNewHandler(w http.ResponseWriter, r *http.Request) {
-	//app.Render(w, r, "index", pongo2.Context{})
-	//app.Render(w, r, "index", r.Context())
 	vars := map[string]interface{}{}
 	app.Render(w, r, "index", vars)
 }
@@ -20,10 +18,6 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 	if app.db.Ping() != nil {
 		session.AddFlash("Can't connect to the database.")
 		session.Save(r, w)
-		//app.Render(w, r, "index", pongo2.Context{"email": r.PostFormValue("email")})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
-		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
 		app.Render(w, r, "index", vars)
@@ -31,13 +25,8 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 	} else if user_table_exists == false {
 		session.AddFlash("There is no user table. Make sure migrations have been run.")
 		session.Save(r, w)
-		//app.Render(w, r, "index", pongo2.Context{"email": r.PostFormValue("email")})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
-		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
-		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}
@@ -46,13 +35,8 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 	if valid_email == nil {
 		session.AddFlash("There is no account for the email: " + r.PostFormValue("email"))
 		session.Save(r, w)
-		//app.Render(w, r, "index", pongo2.Context{"email": r.PostFormValue("email")})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
-		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
-		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}
@@ -61,13 +45,8 @@ func (app *Application) SessionsCreateHandler(w http.ResponseWriter, r *http.Req
 	if user == nil {
 		session.AddFlash("Invalid password.")
 		session.Save(r, w)
-		//app.Render(w, r, "index", pongo2.Context{"email": r.PostFormValue("email")})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
-		//app.Render(w, r, "index", ctx)
 		vars := map[string]interface{}{}
 		vars["email"] = r.PostFormValue("email")
-		//vars["flashes"] = session.Flashes()
 		app.Render(w, r, "index", vars)
 		return
 	}

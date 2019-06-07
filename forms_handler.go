@@ -13,20 +13,12 @@ import (
 func (app *Application) FormsIndexHandler(w http.ResponseWriter, r *http.Request, currentUser *models.User) {
 	forms, _ := repo.NewFormsRepository(app.db).FindByUserId(currentUser.Id)
 
-	//app.Render(w, r, "forms/index", pongo2.Context{
-	//	"forms": forms,
-	//})
-	//ctx := r.Context()
-	//ctx = context.WithValue(ctx, "forms", forms)
-	//app.Render(w, r, "forms/index", ctx)
 	vars := map[string]interface{}{}
 	vars["forms"] = forms
 	app.Render(w, r, "forms/index", vars)
 }
 
 func (app *Application) FormsNewHandler(w http.ResponseWriter, r *http.Request, currentUser *models.User) {
-	//app.Render(w, r, "forms/new", pongo2.Context{})
-	//app.Render(w, r, "forms/new", r.Context())
 	vars := map[string]interface{}{}
 	app.Render(w, r, "forms/new", vars)
 }
@@ -54,10 +46,6 @@ func (app *Application) FormsCreateHandler(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		session.AddFlash("An error occured while creating your form")
 		session.Save(r, w)
-		//app.Render(w, r, "forms/new", pongo2.Context{"form": form})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "form", form)
-		//app.Render(w, r, "forms/new", ctx)
 		vars := map[string]interface{}{}
 		vars["form"] = form
 		app.Render(w, r, "forms/new", vars)
@@ -83,14 +71,6 @@ func (app *Application) FormsShowHandler(w http.ResponseWriter, r *http.Request,
 		return
 	}
 
-	//app.Render(w, r, "forms/show", pongo2.Context{
-	//	"form":        form,
-	//	"submissions": submissions,
-	//})
-	//ctx := r.Context()
-	//ctx = context.WithValue(ctx, "form", form)
-	//ctx = context.WithValue(ctx, "submissions", submissions)
-	//app.Render(w, r, "forms/show", ctx)
 	vars := map[string]interface{}{}
 	vars["form"] = form
 	vars["submissions"] = submissions
@@ -109,10 +89,6 @@ func (app *Application) FormsEditHandler(w http.ResponseWriter, r *http.Request,
 		return
 	}
 
-	//app.Render(w, r, "forms/edit", pongo2.Context{"form": form})
-	//ctx := r.Context()
-	//ctx = context.WithValue(ctx, "form", form)
-	//app.Render(w, r, "forms/edit", ctx)
 	vars := map[string]interface{}{}
 	vars["form"] = form
 	app.Render(w, r, "forms/edit", vars)
@@ -149,10 +125,6 @@ func (app *Application) FormsUpdateHandler(w http.ResponseWriter, r *http.Reques
 	if err != nil {
 		session.AddFlash("An error occured while updating this form")
 		session.Save(r, w)
-		//app.Render(w, r, "forms/edit", pongo2.Context{"form": form})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "form", form)
-		//app.Render(w, r, "forms/edit", ctx)
 		vars := map[string]interface{}{}
 		vars["form"] = form
 		app.Render(w, r, "forms/edit", vars)
@@ -181,10 +153,6 @@ func (app *Application) FormsDestroyHandler(w http.ResponseWriter, r *http.Reque
 	if err != nil {
 		session.AddFlash("An error occured while deleting this form")
 		session.Save(r, w)
-		//app.Render(w, r, "forms/edit", pongo2.Context{"form": form})
-		//ctx := r.Context()
-		//ctx = context.WithValue(ctx, "form", form)
-		//app.Render(w, r, "forms/edit", ctx)
 		vars := map[string]interface{}{}
 		vars["form"] = form
 		app.Render(w, r, "forms/edit", vars)

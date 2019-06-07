@@ -15,14 +15,12 @@
     <div class="help">Don't have an account? <a href="/signup">Sign up</a></div>
   </div>
 
-  {{/* for f in flashes */}}
   {{ range .flashes }}
-  <div class="alert" role="alert">{{/* f */}}{{ . }}</div>
+  <div class="alert" role="alert">{{ . }}</div>
   {{ end }}
-  {{/* endfor */}}
 
   <label for="email">Email</label>
-  <input id="email" name="email" placeholder="admin@example.com" type="email" value="{{/* .email */}}" required />
+  <input id="email" name="email" placeholder="admin@example.com" type="email" value="{{ .email }}" required />
 
   <label for="password">Password</label> <a href="/reset">Forgot?</a>
   <input id="password" name="password" type="password" required /> 
