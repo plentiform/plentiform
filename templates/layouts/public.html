@@ -1,3 +1,4 @@
+{{ define "top" }}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,16 +14,17 @@
 
   </head>
   <body>
+    {{ . }}
     <nav>
-    {% if currentUser %}
+    {{ if .currentUser }}
       <a href="/logout">Logout</a>
-    {% else %}
+    {{ else }}
       <a id="brand" href="/"><img src="/img/plentiform.svg" /></a>
       <a href="/login">Login</a>
       <a href="/signup">Sign up</a>
-    {% endif %}
+    {{ end }}
     </nav>
-    {% if currentUser %}
+    {{ if .currentUser }}
     <aside>
       <ul>
         <li class="nav-item">
@@ -31,11 +33,12 @@
       </ul>
     </aside>
     <main>
-    {% else %}
+    {{ else }}
     <main class="logged-out">
-    {% endif %}
-      {% block content %}
-      {% endblock %}
+    {{ end }}
+{{ end }}
+{{ define "bottom" }}
     </main>
   </body>
 </html>
+{{ end }}

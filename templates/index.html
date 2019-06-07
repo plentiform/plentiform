@@ -1,28 +1,28 @@
-{% extends "layouts/public.html" %}
+{{ template "top" . }}
 
-{% block content %}
-
-{% if currentUser %}
+{{ if .currentUser }}
 <p>An open source form backend for your JAMstack sites written in Go.</p>
 <ul>
   <li><a href="https://plentiform.com">Website</a></li>
   <li><a href="https://github.com/plentiform">GitHub</a></li>
 </ul>
-{% else %}
+{{ else }}
 <form action="/login" method="post">
 
   <div id="login-intro">
-    {% include "gopher.html" %}
+    {{ template "gopher" . }}
     <h1>Login</h1>
     <div class="help">Don't have an account? <a href="/signup">Sign up</a></div>
   </div>
 
-  {% for f in flashes %}
-    <div class="alert" role="alert">{{ f }}</div>
-  {% endfor %}
+  {{/* for f in flashes */}}
+  {{ range .Flashes }}
+  <div class="alert" role="alert">{{/* f */}}test</div>
+  {{ end }}
+  {{/* endfor */}}
 
   <label for="email">Email</label>
-  <input id="email" name="email" placeholder="admin@example.com" type="email" value="{{ email }}" required />
+  <input id="email" name="email" placeholder="admin@example.com" type="email" value="{{/* .email */}}" required />
 
   <label for="password">Password</label> <a href="/reset">Forgot?</a>
   <input id="password" name="password" type="password" required /> 
@@ -30,5 +30,6 @@
   <input type="submit" class="button" value="Login">
 
 </form>
-{% endif %}
-{% endblock %}
+{{ end }}
+
+{{ template "bottom" . }}

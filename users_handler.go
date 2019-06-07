@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/flosch/pongo2"
 	"github.com/plentiform/plentiform/mailers"
 	"github.com/plentiform/plentiform/models"
 	repo "github.com/plentiform/plentiform/repositories"
@@ -13,7 +12,10 @@ import (
 )
 
 func (app *Application) UsersNewHandler(w http.ResponseWriter, r *http.Request) {
-	app.Render(w, r, "users/new", pongo2.Context{})
+	//app.Render(w, r, "users/new", pongo2.Context{})
+	//app.Render(w, r, "users/new", r.Context())
+	vars := map[string]interface{}{}
+	app.Render(w, r, "users/new", vars)
 }
 
 func (app *Application) UsersCreateHandler(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +32,13 @@ func (app *Application) UsersCreateHandler(w http.ResponseWriter, r *http.Reques
 	if !app.recaptchaClient.Verify(*r) {
 		session.AddFlash("Invalid ReCaptcha")
 		session.Save(r, w)
-		app.Render(w, r, "users/new", pongo2.Context{"user": newUser})
+		//app.Render(w, r, "users/new", pongo2.Context{"user": newUser})
+		//ctx := r.Context()
+		//ctx = context.WithValue(ctx, "user", newUser)
+		//app.Render(w, r, "users/new", ctx)
+		vars := map[string]interface{}{}
+		vars["user"] = newUser
+		app.Render(w, r, "users/new", vars)
 		return
 	}
 
@@ -39,7 +47,13 @@ func (app *Application) UsersCreateHandler(w http.ResponseWriter, r *http.Reques
 		log.Println(err)
 		session.AddFlash("Woah, something bad happened.")
 		session.Save(r, w)
-		app.Render(w, r, "users/new", pongo2.Context{"user": newUser})
+		//app.Render(w, r, "users/new", pongo2.Context{"user": newUser})
+		//ctx := r.Context()
+		//ctx = context.WithValue(ctx, "user", newUser)
+		//app.Render(w, r, "users/new", ctx)
+		vars := map[string]interface{}{}
+		vars["user"] = newUser
+		app.Render(w, r, "users/new", vars)
 		return
 	}
 

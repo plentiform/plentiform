@@ -4,14 +4,16 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/flosch/pongo2"
 	"github.com/plentiform/plentiform/mailers"
 	repo "github.com/plentiform/plentiform/repositories"
 	"github.com/tuvistavie/securerandom"
 )
 
 func (app *Application) EmailConfirmationsNewHandler(w http.ResponseWriter, r *http.Request) {
-	app.Render(w, r, "email_confirmations/new", pongo2.Context{})
+	//app.Render(w, r, "email_confirmations/new", pongo2.Context{})
+	//app.Render(w, r, "email_confirmations/new", r.Context())
+	vars := map[string]interface{}{}
+	app.Render(w, r, "email_confirmations/new", vars)
 }
 
 func (app *Application) EmailConfirmationsCreateHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +25,13 @@ func (app *Application) EmailConfirmationsCreateHandler(w http.ResponseWriter, r
 	if !ok {
 		session.AddFlash("Invalid ReCaptcha")
 		session.Save(r, w)
-		app.Render(w, r, "email_confirmations/new", pongo2.Context{"email": r.PostFormValue("email")})
+		//app.Render(w, r, "email_confirmations/new", pongo2.Context{"email": r.PostFormValue("email")})
+		//ctx := r.Context()
+		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
+		//app.Render(w, r, "email_confirmations/new", ctx)
+		vars := map[string]interface{}{}
+		vars["email"] = r.PostFormValue("email")
+		app.Render(w, r, "email_confirmations/new", vars)
 		return
 	}
 
@@ -36,7 +44,13 @@ func (app *Application) EmailConfirmationsCreateHandler(w http.ResponseWriter, r
 		log.Println(err)
 		session.AddFlash("Something bad happened :(")
 		session.Save(r, w)
-		app.Render(w, r, "email_confirmations/new", pongo2.Context{"email": r.PostFormValue("email")})
+		//app.Render(w, r, "email_confirmations/new", pongo2.Context{"email": r.PostFormValue("email")})
+		//ctx := r.Context()
+		//ctx = context.WithValue(ctx, "email", r.PostFormValue("email"))
+		//app.Render(w, r, "email_confirmations/new", ctx)
+		vars := map[string]interface{}{}
+		vars["email"] = r.PostFormValue("email")
+		app.Render(w, r, "email_confirmations/new", vars)
 		return
 	}
 
