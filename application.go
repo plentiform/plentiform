@@ -47,7 +47,7 @@ func NewApplication() *Application {
 }
 
 func (app *Application) Render(w http.ResponseWriter, r *http.Request, name string, vars map[string]interface{}) error {
-	t, err := template.ParseFiles("templates/"+name+".html", "templates/layouts/public.html", "templates/gopher.html")
+	t, err := template.ParseFiles("templates/"+name+".html", "templates/layouts/public.html", "templates/gopher.html", "templates/forms/_form.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return err

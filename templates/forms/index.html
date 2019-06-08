@@ -1,6 +1,5 @@
-{% extends "../layouts/public.html" %}
+{{ template "top" . }}
 
-{% block content %}
 <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle">Forms</h6>
@@ -17,11 +16,12 @@
 <div class="clearfix"></div>
 
 <div class="list-group pt-2">
-  {% for form in forms %}
-  <a href="/forms/{{ form.Id }}" class="list-group-item list-group-item-action flex-column align-items-start">
-    <h5 class="mb-1">{{ form.Name }}</h5>
-    <small>{{ form.Uuid }}</small>
+  {{ range .forms }}
+  <a href="/forms/{{ .Id }}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <h5 class="mb-1">{{ .Name }}</h5>
+    <small>{{ .Uuid }}</small>
   </a>
-  {% endfor %}
+  {{ end }}
 </div>
-{% endblock %}
+
+{{ template "bottom" . }}

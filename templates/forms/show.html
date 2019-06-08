@@ -1,15 +1,14 @@
-{% extends "../layouts/public.html" %}
+{{ template "top" . }}
 
-{% block content %}
 <div class="dashhead">
   <div class="dashhead-titles">
     <h6 class="dashhead-subtitle">Forms</h6>
-    <h3 class="dashhead-title">{{ form.Name }}</h3>
+    <h3 class="dashhead-title">{{ .form.Name }}</h3>
   </div>
 
   <div class="dashhead-toolbar">
     <div class="btn-group dashhead-toolbar-item btn-group-thirds">
-      <a href="/forms/{{ form.Id }}/edit" class="btn btn-primary">Edit Form</a>
+      <a href="/forms/{{ .form.Id }}/edit" class="btn btn-primary">Edit Form</a>
     </div>
   </div>
 </div>
@@ -27,11 +26,12 @@
       <th>Body</th>
     </tr>
   </thead>
-  {% for submission in submissions %}
+  {{ range .submissions }}
   <tr>
-    <td>{{ submission.Id }}</td>
-    <td>{{ submission.Body }}</td>
+    <td>{{ .Id }}</td>
+    <td>{{ .Body }}</td>
   </tr>
-  {% endfor %}
+  {{ end }}
 </table>
-{% endblock %}
+
+{{ template "bottom" . }}
