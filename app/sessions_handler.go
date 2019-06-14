@@ -1,8 +1,9 @@
-package main
+package app
 
 import (
 	"net/http"
 
+	"github.com/plentiform/plentiform/models"
 	repo "github.com/plentiform/plentiform/repositories"
 )
 
@@ -65,4 +66,21 @@ func (app *Application) SessionsDestroyHandler(w http.ResponseWriter, r *http.Re
 	session.Save(r, w)
 
 	http.Redirect(w, r, "/", 302)
+}
+
+type AuthenticatedHandlerFunc func(http.ResponseWriter, *http.Request, *models.User)
+
+func (app *Application) RequireAuthentication(next AuthenticatedHandlerFunc) http.HandlerFunc {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		session, err := app.GetSession(r)
+		user, err := repo.NewUsersRepository(app.db).FindById(session.Values["userId"].(int))
+		if user == nil || err != nil {
+			session.AddFlash("You must be logged in!")
+			session.Save(r, w)
+			http.Redirect(w, r, "/login", 307)
+			return
+		}
+
+		next(w, r, user)
+	})
 }

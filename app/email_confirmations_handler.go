@@ -1,10 +1,11 @@
-package main
+package app
 
 import (
 	"log"
 	"net/http"
 
 	"github.com/plentiform/plentiform/mailers"
+	"github.com/plentiform/plentiform/models"
 	repo "github.com/plentiform/plentiform/repositories"
 	"github.com/tuvistavie/securerandom"
 )
@@ -74,4 +75,19 @@ func (app *Application) EmailConfirmationsShowHandler(w http.ResponseWriter, r *
 	session.AddFlash("Successfully confirmed your email address.")
 	session.Save(r, w)
 	http.Redirect(w, r, "/", 302)
+}
+
+func (app *Application) RequireEmailConfirmation(next AuthenticatedHandlerFunc) AuthenticatedHandlerFunc {
+	return AuthenticatedHandlerFunc(func(w http.ResponseWriter, r *http.Request, currentUser *models.User) {
+		session, _ := app.GetSession(r)
+
+		if !currentUser.IsEmailConfirmed {
+			session.AddFlash("You must confirm your email address before continuing")
+			session.Save(r, w)
+			http.Redirect(w, r, "/email_confirmation/new", 302)
+			return
+		}
+
+		next(w, r, currentUser)
+	})
 }

@@ -8,12 +8,11 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/plentiform/plentiform/models"
-	repo "github.com/plentiform/plentiform/repositories"
+	a "github.com/plentiform/plentiform/app"
 )
 
 func main() {
-	app := NewApplication()
+	app := a.NewApplication()
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", app.IndexHandler).Methods("GET")
@@ -48,36 +47,4 @@ func main() {
 		handlers.CompressHandler(
 			handlers.HTTPMethodOverrideHandler(
 				handlers.LoggingHandler(os.Stdout, r)))))
-}
-
-type AuthenticatedHandlerFunc func(http.ResponseWriter, *http.Request, *models.User)
-
-func (app *Application) RequireAuthentication(next AuthenticatedHandlerFunc) http.HandlerFunc {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		session, err := app.GetSession(r)
-		user, err := repo.NewUsersRepository(app.db).FindById(session.Values["userId"].(int))
-		if user == nil || err != nil {
-			session.AddFlash("You must be logged in!")
-			session.Save(r, w)
-			http.Redirect(w, r, "/login", 307)
-			return
-		}
-
-		next(w, r, user)
-	})
-}
-
-func (app *Application) RequireEmailConfirmation(next AuthenticatedHandlerFunc) AuthenticatedHandlerFunc {
-	return AuthenticatedHandlerFunc(func(w http.ResponseWriter, r *http.Request, currentUser *models.User) {
-		session, _ := app.GetSession(r)
-
-		if !currentUser.IsEmailConfirmed {
-			session.AddFlash("You must confirm your email address before continuing")
-			session.Save(r, w)
-			http.Redirect(w, r, "/email_confirmation/new", 302)
-			return
-		}
-
-		next(w, r, currentUser)
-	})
 }
