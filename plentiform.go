@@ -8,10 +8,12 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
+	precompiler "github.com/parnic/go-assetprecompiler"
 	a "github.com/plentiform/plentiform/app"
 )
 
 func main() {
+
 	app := a.NewApplication()
 
 	r := mux.NewRouter()
@@ -35,7 +37,22 @@ func main() {
 	r.HandleFunc("/forms", app.RequireAuthentication(app.RequireEmailConfirmation(app.FormsIndexHandler))).Methods("GET")
 	r.HandleFunc("/forms", app.RequireAuthentication(app.RequireEmailConfirmation(app.FormsCreateHandler))).Methods("POST")
 
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./assets/public/")))
+
+	// Asset pipeline to concat, minify, and fingerprint css & js
+	precompileResult, _ := precompiler.Compile(precompiler.Config{
+		Files: []string{
+			"assets/css/main.css",
+			"assets/css/components/nav.css",
+			"assets/js/main.js",
+		},
+		Minify:    true,
+		OutputDir: "assets/public/",
+	})
+	cssHash := precompileResult[precompiler.CSS].Hash
+	a.CssHash = cssHash
+	jsHash := precompileResult[precompiler.JS].Hash
+	a.JsHash = jsHash
 
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
@@ -47,4 +64,5 @@ func main() {
 		handlers.CompressHandler(
 			handlers.HTTPMethodOverrideHandler(
 				handlers.LoggingHandler(os.Stdout, r)))))
+
 }

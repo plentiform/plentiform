@@ -14,6 +14,9 @@ import (
 	"github.com/sendgrid/sendgrid-go"
 )
 
+var CssHash string
+var JsHash string
+
 type Application struct {
 	db              *sql.DB
 	sessions        *sessions.CookieStore
@@ -47,6 +50,7 @@ func NewApplication() *Application {
 }
 
 func (app *Application) Render(w http.ResponseWriter, r *http.Request, name string, vars map[string]interface{}) error {
+
 	t, err := template.ParseFiles("templates/"+name+".html", "templates/layouts/public.html", "templates/gopher.html", "templates/forms/_form.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -60,6 +64,8 @@ func (app *Application) Render(w http.ResponseWriter, r *http.Request, name stri
 		vars["currentUser"] = user
 	}
 
+	vars["css_hash"] = CssHash
+	vars["js_hash"] = JsHash
 	vars["session"] = session
 	vars["recaptcha_site_key"] = os.Getenv("RECAPTCHA_SITE_KEY")
 	vars["flashes"] = session.Flashes()

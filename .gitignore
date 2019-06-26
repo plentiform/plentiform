@@ -1,3 +1,5 @@
 .env
 plentiform
 vendor
+assets/public/css/app-*.min.css
+assets/public/js/app-*.min.js
