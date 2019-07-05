@@ -49,10 +49,8 @@ func main() {
 		Minify:    true,
 		OutputDir: "assets/public/",
 	})
-	cssHash := precompileResult[precompiler.CSS].Hash
-	a.CssHash = cssHash
-	jsHash := precompileResult[precompiler.JS].Hash
-	a.JsHash = jsHash
+	a.CssHash = precompileResult[precompiler.CSS].Hash
+	a.JsHash = precompileResult[precompiler.JS].Hash
 
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
