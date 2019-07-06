@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	_ "github.com/joho/godotenv/autoload"
-	precompiler "github.com/parnic/go-assetprecompiler"
+	precompiler "github.com/plentiform/go-asset-pipeline"
 	a "github.com/plentiform/plentiform/app"
 )
 
