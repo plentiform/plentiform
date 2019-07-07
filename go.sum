@@ -34,6 +34,8 @@ github.com/modern-go/reflect2 v1.0.1 h1:9f412s+6RmYXLWZSEzVVgPGK7C2PphHj5RJrvfx9
 github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/parnic/go-assetprecompiler v0.0.0-20181201023724-8d82942a1509 h1:9oEpcF8QkIgEOIig1Bmi08FVFMN5t4cIttdaaMENuWE=
 github.com/parnic/go-assetprecompiler v0.0.0-20181201023724-8d82942a1509/go.mod h1:vJtsgj75vx+mS1Zj4t5sx6yyzkUSg66N3/GGwZMKJnI=
+github.com/plentiform/go-asset-pipeline v0.0.0 h1:e/nlEfpg88ZX6+Fu9nnnwrg9BshZdaVhZ+4ysNQ2JYY=
+github.com/plentiform/go-asset-pipeline v0.0.0/go.mod h1:edErvkG/Fp7ybzOyHEOmc9hfsA0ZX5z9o5nH7tOALvM=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/sendgrid/rest v2.4.0+incompatible h1:z0P+kJtg3X9U+gdf8UISOB2INuW0dKR+4jNEnJ0aLWw=

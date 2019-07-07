@@ -13,10 +13,8 @@ require (
 	github.com/haisum/recaptcha v0.0.0-20170327142240-7d3b8053900e
 	github.com/joho/godotenv v1.3.0
 	github.com/lib/pq v0.0.0-20171126050459-83612a56d3dd
-	github.com/plentiform/go-asset-pipeline v0.0.0-20181201023724-8d82942a1509
+	github.com/plentiform/go-asset-pipeline v0.0.0
 	github.com/sendgrid/rest v2.4.0+incompatible
 	github.com/sendgrid/sendgrid-go v3.4.1+incompatible
 	github.com/tuvistavie/securerandom v0.0.0-20140719024926-15512123a948
 )
-
-replace github.com/plentiform/go-asset-pipeline => ../go-asset-pipeline

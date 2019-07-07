@@ -43,7 +43,7 @@ func main() {
 	precompileResult, _ := precompiler.Compile(precompiler.Config{
 		Files: []string{
 			"assets/css/main.css",
-			"assets/css/components/nav.css",
+			"assets/css/components/*",
 			"assets/js/main.js",
 		},
 		Minify:    true,
